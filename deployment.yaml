@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-native-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-native-app
+  template:
+    metadata:
+      labels:
+        app: cloud-native-app
+    spec:
+      containers:
+      - name: cloud-native-app
+        image: gcr.io/unified-courier-455912-e0/cloud-native-app
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URI
+          value: "<your-mongo-uri>"
